@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NETFLIX</title>
+
+    <link rel="icon" type="image/png" href="n.png">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            z-index: 10;
+        }
+
+        .logo {
+            width: 180px;
+            position: absolute;
+            top: 25px;
+            left: 126px;
+        }
+
+        /* Language */
+
+        .language-box {
+            position: absolute;
+            top: 30px;
+            right: 226px;
+
+            background: black;
+            color: white;
+            border: 1px solid white;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .language-box select {
+            background: black;
+            color: white;
+            border: none;
+            font-size: 15px;
+            outline: none;
+        }
+
+        /* Sign In */
+
+        .signin {
+            position: absolute;
+            top: 28px;
+            right: 116px;
+
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .signin:hover {
+            background: darkred;
+        }
+
+
+        /* ================= HOME PAGE ================= */
+
+        .hero {
+            height: 100vh;
+            min-height: 650px;
+
+            background-image:
+                linear-gradient(
+                    rgba(0,0,0,0.25),
+                    rgba(0,0,0,0.8)
+                ),
+                url("html.png");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .content {
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        .content h1 {
+            font-size: 52px;
+            margin-bottom: 15px;
+        }
+
+        .content h2 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+
+
+        /* ================= EMAIL ================= */
+
+        .signup {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .email-box {
+            width: 350px;
+            height: 60px;
+
+            background: rgba(0, 0, 0, 0.75);
+
+            border: 1px solid #aaa;
+            border-radius: 4px;
+
+            padding: 8px 15px;
+
+            text-align: left;
+        }
+
+        .email-box label {
+            display: block;
+
+            color: #aaa;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+        }
+
+        .email-box input {
+            width: 100%;
+
+            background: transparent;
+
+            color: white;
+
+            border: none;
+            outline: none;
+
+            font-size: 16px;
+        }
+
+        .signup button {
+            padding: 18px 25px;
+
+            background: red;
+            color: white;
+
+            border: none;
+            border-radius: 4px;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .signup button:hover {
+            background: darkred;
+        }
+
+
+        /* ================= MOVIES PAGE ================= */
+
+        #moviesPage {
+            display: none;
+
+            min-height: 100vh;
+
+            padding: 50px 6%;
+
+            background: #000;
+        }
+
+        #moviesPage h1 {
+            margin-bottom: 30px;
+        }
+
+        .movie-row {
+            display: flex;
+
+            gap: 20px;
+
+            overflow-x: auto;
+
+            padding: 10px;
+        }
+
+        .movie-card {
+            min-width: 190px;
+            height: 280px;
+
+            border-radius: 7px;
+
+            overflow: hidden;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.08);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+
+        /* ================= VIDEO PAGE ================= */
+
+        #videoPage {
+            display: none;
+
+            min-height: 100vh;
+
+            padding: 50px;
+
+            background: #000;
+
+            text-align: center;
+        }
+
+        #videoPlayer {
+            width: 80%;
+            max-width: 1000px;
+
+            margin-top: 30px;
+        }
+
+        .backButton {
+            background: red;
+            color: white;
+
+            border: none;
+
+            padding: 12px 20px;
+
+            border-radius: 4px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            .logo {
+                width: 120px;
+                left: 25px;
+            }
+
+            .language-box {
+                right: 110px;
+            }
+
+            .signin {
+                right: 20px;
+            }
+
+            .content h1 {
+                font-size: 34px;
+            }
+
+            .content h2 {
+                font-size: 18px;
+            }
+
+            .signup {
+                flex-direction: column;
+            }
+
+            .email-box {
+                width: 90%;
+            }
+
+            .movie-card {
+                min-width: 140px;
+                height: 210px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="header">
+
+        <!-- Netflix Logo -->
+
+        <img class="logo" src="net.png">
+
+
+        <!-- Language -->
+
+        <div class="language-box">
+
+            🌐
+
+            <select id="language">
+
+                <option value="en">English</option>
+
+                <option value="hi">Hindi</option>
+
+                <option value="es">Spanish</option>
+
+                <option value="fr">French</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Sign In -->
+
+        <button
+            class="signin"
+            onclick="showMovies()">
+
+            Sign In
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ================= HOME ================= -->
+
+    <section
+        class="hero"
+        id="homePage">
+
+        <div class="content">
+
+            <h1>
+                Unlimited movies, TV shows and more
+            </h1>
+
+
+            <h2>
+                Watch anywhere. Cancel anytime.
+            </h2>
+
+
+            <!-- EMAIL -->
+
+            <div class="signup">
+
+                <div class="email-box">
+
+                    <label>
+                        Email or mobile number
+                    </label>
+
+                    <input
+                        id="email"
+                        type="text">
+
+                </div>
+
+
+                <button
+                    onclick="createAccount()">
+
+                    Get Started >
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= MOVIES ================= -->
+
+    <section id="moviesPage">
+
+        <h1>
+            Welcome to NETFLIX 🎬
+        </h1>
+
+
+        <h2>
+            Popular shows
+        </h2>
+
+
+        <div class="movie-row">
+
+
+            <div
+                class="movie-card"
+                onclick="playMovie('videos/movie1.mp4')">
+
+                <img src="saitama.jpeg">
+
+            </div>
+
+
+            <div
+                class="movie-card"
+                onclick="playMovie('videos/movie2.mp4')">
+
+                <img src="FF.jpeg">
+
+            </div>
+
+
+            <div
+                class="movie-card"
+                onclick="playMovie('videos/movie3.mp4')">
+
+                <img src="survivor.jpeg">
+
+            </div>
+
+
+            <div
+                class="movie-card"
+                onclick="playMovie('videos/movie4.mp4')">
+
+                <img src="movies/movie4.jpg">
+
+            </div>
+
+        </div>
+
+
+
+        <h2>
+            Trending Now
+        </h2>
+
+
+        <div class="movie-row">
+
+
+            <div
+                class="movie-card"
+                onclick="playMovie('videos/movie5.mp4')">
+
+                <img src="saitama.jpeg">
+
+            </div>
+
+
+            <div
+                class="movie-card"
+                onclick="playMovie('videos/movie6.mp4')">
+
+                <img src="jjk.jpeg">
+
+            </div>
+
+
+            <div
+                class="movie-card"
+                onclick="playMovie('videos/movie7.mp4')">
+
+                <img src="bb.jpeg">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= VIDEO ================= -->
+
+    <section id="videoPage">
+
+        <h1>
+            Now Playing 🎬
+        </h1>
+
+
+        <button
+            class="backButton"
+            onclick="backToMovies()">
+
+            ← Back to Movies
+
+        </button>
+
+
+        <br>
+
+
+        <video
+            id="videoPlayer"
+            controls>
+
+        </video>
+
+    </section>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+
+        /* CREATE ACCOUNT */
+
+        function createAccount() {
+
+            let email =
+                document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+            if (email === "") {
+
+                alert(
+                    "Please enter your email or mobile number."
+                );
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                "account",
+                email
+            );
+
+
+            showMovies();
+
+        }
+
+
+
+        /* SHOW MOVIES */
+
+        function showMovies() {
+
+            document
+            .getElementById("homePage")
+            .style.display = "none";
+
+
+            document
+            .getElementById("moviesPage")
+            .style.display = "block";
+
+
+            document
+            .getElementById("videoPage")
+            .style.display = "none";
+
+
+            window.scrollTo(0, 0);
+
+        }
+
+
+
+        /* PLAY MOVIE */
+
+        function playMovie(movieFile) {
+
+            document
+            .getElementById("homePage")
+            .style.display = "none";
+
+
+            document
+            .getElementById("moviesPage")
+            .style.display = "none";
+
+
+            document
+            .getElementById("videoPage")
+            .style.display = "block";
+
+
+            let player =
+                document.getElementById(
+                    "videoPlayer"
+                );
+
+
+            player.src = movieFile;
+
+
+            player.play();
+
+
+            window.scrollTo(0, 0);
+
+        }
+
+
+
+        /* BACK TO MOVIES */
+
+        function backToMovies() {
+
+            let player =
+                document.getElementById(
+                    "videoPlayer"
+                );
+
+
+            player.pause();
+
+            player.src = "";
+
+
+            document
+            .getElementById("videoPage")
+            .style.display = "none";
+
+
+            document
+            .getElementById("moviesPage")
+            .style.display = "block";
+
+        }
+
+
+    </script>
+
+
+</body>
+</html>
